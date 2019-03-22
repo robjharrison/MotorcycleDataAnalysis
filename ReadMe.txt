@@ -59,6 +59,9 @@ sudo pkill -f driveCam.py
 # Find out how much space is left locally
 df -h
 
+# See which programs are using the most (ascending order)
+dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n
+
 # Find the name of your USB drive (so you can mount it)
 ls -l /dev/disk/by-uuid/
 
