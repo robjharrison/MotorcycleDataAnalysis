@@ -3,18 +3,22 @@ from __future__ import division
 
 import numpy as np
 
+## Example
 ##width = 640
 ##height = 480
 
+# These must match the video/camera resolution settings
 width = 1280
 height = 720
+
+motionDataFile = 'EXAMPLEmotion.data'
 
 cols = (width + 15) // 16
 cols += 1 # there's always an extra column
 rows = (height + 15) // 16
 
 motion_data = np.fromfile(
-    '190321_23_54_02motion.data', dtype=[
+    motionDataFile, dtype=[
         ('x', 'i1'),
         ('y', 'i1'),
         ('sad', 'u2'),
