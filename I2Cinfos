@@ -1,0 +1,108 @@
+from https://pinout.xyz/pinout/i2c
+
+I2C - Inter Integrated Circuit
+I2C pins in BCM mode are: 2, 3
+I2C pins in WiringPi are: 8, 9
+The Raspberry Pi's I2C pins are an extremely useful way to talk to many different types of external peripheral; from the MCP23017 digital IO expander, to a connected ATmega.
+
+The I2C pins include a fixed 1.8 kohms pull-up resistor to 3.3v. This means they are not suitable for use as general purpose IO where a pull-up is not required.
+
+You can verify the address of connected I2C peripherals with a simple one-liner:
+
+sudo apt-get install i2c-tools
+sudo i2cdetect -y 1
+You can then access I2C from Python using the smbus library:
+
+import smbus
+DEVICE_BUS = 1
+DEVICE_ADDR = 0x15
+bus = smbus.SMBus(DEVICE_BUS)
+bus.write_byte_data(DEVICE_ADDR, 0x00, 0x01)
+Details
+Uses 4 GPIO pins
+More Information
+
+
+
+**********************************
+from https://raspberry-projects.com/pi/programming-in-python/i2c-programming-in-python/using-the-i2c-interface-2
+Checking For Connected Devices
+At the command prompt type one of these depending on whether you are using the I2C0 or I2C1 port:
+
+
+sudo i2cdetect -y 0
+//or
+sudo i2cdetect -y 1
+
+**********************************
+
+BCM 2 (I2C Data)
+Alt0	Alt1	Alt2	Alt3	Alt4	Alt5
+I2C1 SDA	SMI SA3	DPI VSYNC	AVEOUT VSYNC	AVEIN VSYNC	
+Physical pin 3
+BCM pin 2
+Wiring Pi pin 8
+BCM pin 0 on Rev 1 ( very early ) Pi
+SDA (i2c Data) is one of the i2c pins on the Pi, learn more about i2c.
+
+SDA includes a fixed, 1.8 kohms pull-up to 3.3v, which means this pin is not suitable for use as a general purpose IO where no pullup resistor is desired.
+
+
+BCM 3 (I2C Clock)
+Alt0	Alt1	Alt2	Alt3	Alt4	Alt5
+I2C1 SCL	SMI SA2	DPI HSYNC	AVEOUT HSYNC	AVEIN HSYNC	
+Physical pin 5
+BCM pin 3
+Wiring Pi pin 9
+BCM pin 1 on Rev 1 ( very early ) Pi
+SCL (i2c Clock) is one of the i2c pins on the Pi, learn more about i2c.
+
+SCL includes a fixed, 1.8 kohms pull-up to 3.3v, which means this pin is not suitable for use as a general purpose IO where no pullup resistor is desired.
+
+
+BCM 0 (HAT EEPROM i2c Data)
+Alt0	Alt1	Alt2	Alt3	Alt4	Alt5
+I2C0 SDA	SMI SA5	DPI CLK	AVEOUT VCLK	AVEIN VCLK	
+Physical pin 27
+BCM pin 0
+Wiring Pi pin 30
+These pins are generally reserved for i2c communication with an EEPROM.
+
+Connect those pins for auto configuration, if the board provides the feature (check the board description for details of EEPROM functionality).
+
+
+BCM 1 (HAT EEPROM i2c Clock)
+Alt0	Alt1	Alt2	Alt3	Alt4	Alt5
+I2C0 SCL	SMI SA4	DPI DEN	AVEOUT DSYNC	AVEIN DSYNC	
+Physical pin 28
+BCM pin 1
+Wiring Pi pin 31
+These pins are generally reserved for i2c communication with an EEPROM.
+
+Connect those pins for auto configuration, if the board provides the feature (check the board description for details of EEPROM functionality).
+
+*******************************************
+https://raspberrypi.stackexchange.com/questions/42802/removing-hats-from-the-pi?rq=1
+https://www.raspberrypi.org/documentation/hardware/sense-hat/images/Sense-HAT-V1_0.pdf
+Check pinout here. http://pinout.xyz/pinout/sense_hat
+
+Detach SenseHat from raspberry and connect through breadboard, you will have to connect these pins.
+
+Pin 1 : 3v3 power to power sense hat.
+
+Pin 9 (or any ground pin): Any one ground to complete circuit.
+
+Pin 27 : ID_SD to detect sense hat
+Pin 28 : ID_SC to detect sense hat.
+Pin 3 (BCM2) and 5 (BCM3): which is the primary GPIO pin used by sensehat.
+
+
+***************************
+To change the naming convention on GPIO pins for your own customisations
+https://www.makeuseof.com/tag/raspberry-pi-gpio-pins-guide/
+
+# 1 - GPIO/BCM Numbering
+GPIO.setmode(GPIO.BCM)
+
+# 2 - Board Numbering
+GPIO.setmode(GPIO.BOARD)
