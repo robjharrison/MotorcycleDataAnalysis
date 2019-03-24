@@ -1,0 +1,13 @@
+I found that in ay least Raspbian Jessie, all the USB drives i was trying to add were read only. This can be an issue because the volume of data being created by the scripts can quickly exceed reasonably priced SD cards. Adding an externala disk IF you have the space in your implementation might solve this. 
+
+Research led me to: 
+https://unix.stackexchange.com/questions/195828/permission-denied-on-mounted-devices
+
+Which gave me the line:
+# apt-get install ntfs-3g 
+
+and a system reboot.
+
+
+
+

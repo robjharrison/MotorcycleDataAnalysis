@@ -1,0 +1,25 @@
+
+
+SD card image
+It may be sensible for you to keep a copy of the entire SD card image, so you can restore the card if you lose it or it becomes corrupt. 
+You can do this using the same method you'd use to write an image to a new card, but in reverse.
+
+In Linux:
+
+sudo dd bs=4M if=/dev/sda | gzip > jessie.img.gz
+
+To restore, pipe the output of gunzip to dd:
+gunzip --stdout jessie.img.gz | sudo dd bs=4M of=/dev/sda
+
+
+Note:
+Where sdb is the name of your usb stick. To check/find out 
+what the name is, type this in Linux.
+
+df -h
+
+If it's not obvious, i.e. you don't see something like /dev/sda1
+Then unplug the usb stick, type it again and see what's missing.
+
+- sda1 - The 1 is dropped as this denotes a partition number. 
+ 
