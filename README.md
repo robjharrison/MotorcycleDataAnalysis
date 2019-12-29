@@ -9,4 +9,4 @@ Motorcycle EDR fitment, and resultant data recording is in it's infancy, with on
     2. Provide a resource for data scientists looking for data to use in a currently very very sparce data topic
     
     
-* Currently, only the code for reuse is posted. Once sufficient data is generated a link to this will be added.*  
+* Update 29/12/2019 - The raw data collected has now been added.   
